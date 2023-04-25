@@ -35,7 +35,7 @@ function CountryDetails({ countries }) {
   }
   return (
     <>
-      <div className="container text-white p-4">
+      <div className="container text-white p-4 h-screen w-screen overflow-hidden">
         <div className="">
           <Link
             to="/"
