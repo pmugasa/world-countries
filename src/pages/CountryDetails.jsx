@@ -1,8 +1,11 @@
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
+import Navbar from "../components/Navbar";
 
 function CountryDetails({ countries }) {
   const name = useParams().name;
   const country = countries.find((c) => c.name.common === name);
+
+  const navigate = useNavigate();
 
   console.log(country);
   let currency;
@@ -35,14 +38,15 @@ function CountryDetails({ countries }) {
   }
   return (
     <>
+      <Navbar />
       <div className="container text-white p-4 min-h-screen w-screen overflow-hidden">
         <div className="">
-          <Link
-            to="/"
+          <button
             className="bg-dark-blue px-2 py-2 border-2 border-very-dark-blue shadow-xl rounded-md hover:bg-very-dark-blue hover:border hover:border-dark-blue w-24"
+            onClick={() => navigate(-1)}
           >
             <ion-icon name="arrow-back-outline" className=""></ion-icon> Back
-          </Link>
+          </button>
         </div>
         <div className="mt-4">
           <img src={country.flags.png} alt="country-flag" />
@@ -85,15 +89,16 @@ function CountryDetails({ countries }) {
         {neighbors === undefined ? null : (
           <div className="mt-16 font-semibold">
             <h3>Border countries</h3>
-            <div className="grid grid-cols-3 gap-4 justify-evenly text-sm font-normal mt-4">
+            <div className="grid grid-cols-3 gap-2 justify-evenly text-sm font-normal mt-4">
               {neighbors.map((border) => (
-                <Link
-                  to={`/countries/${border.name.common}`}
+                <button
                   key={border.name.common}
-                  className="bg-dark-blue px-2 py-2 border-2 border-very-dark-blue shadow-xl rounded-md hover:bg-very-dark-blue hover:border hover:border-dark-blue"
+                  className="bg-dark-blue px-6 h-12 text-sm border-2 border-very-dark-blue shadow-xl rounded-md hover:bg-very-dark-blue hover:border hover:border-dark-blue"
                 >
-                  <p className="">{border.name.common}</p>
-                </Link>
+                  <Link to={`/countries/${border.name.common}`}>
+                    {border.name.common}
+                  </Link>
+                </button>
               ))}
             </div>
           </div>
