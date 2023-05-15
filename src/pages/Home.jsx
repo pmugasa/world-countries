@@ -28,12 +28,18 @@ function Home({ countries, setCountries }) {
   return (
     <>
       <Navbar />
-      <Searchbox search={search} />
-      <Dropdown
-        filterByRegion={filterByRegion}
-        setDropDown={setDropDown}
-        dropdown={dropdown}
-      />
+      <div className="md:flex ">
+        <div className="md:w-full">
+          <Searchbox search={search} />
+        </div>
+
+        <Dropdown
+          filterByRegion={filterByRegion}
+          setDropDown={setDropDown}
+          dropdown={dropdown}
+        />
+      </div>
+
       <div className="md:grid md:grid-cols-4 md:gap-4">
         {searchedCountries.map((country) => {
           return (
