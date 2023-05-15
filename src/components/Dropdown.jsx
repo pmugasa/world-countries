@@ -19,36 +19,36 @@ function Dropdown({ setDropDown, dropdown, filterByRegion }) {
         </div>
         {dropdown === true ? (
           <div className=" absolute z-10 mt-1 p-4 w-52 mx-4 flex items-center bg-dark-blue shadow-md text-white  rounded-lg">
-            <ul className="w-full space-y-2">
+            <ul className="w-full space-y-2 flex-col">
               <li
-                className="hover:bg-very-dark-blue p-2"
+                className="hover:bg-very-dark-blue p-2 cursor-pointer"
                 onClick={() => filterByRegion("africa")}
               >
-                <a href="#">Africa</a>
+                Africa
               </li>
               <li
-                className="hover:bg-very-dark-blue p-2"
+                className="hover:bg-very-dark-blue p-2 cursor-pointer"
                 onClick={() => filterByRegion("americas")}
               >
-                <a href="#">America</a>
+                America
               </li>
               <li
-                className="hover:bg-very-dark-blue p-2"
+                className="hover:bg-very-dark-blue p-2 cursor-pointer"
                 onClick={() => filterByRegion("asia")}
               >
-                <a href="#">Asia</a>
+                Asia
               </li>
               <li
-                className="hover:bg-very-dark-blue p-2"
+                className="hover:bg-very-dark-blue p-2 cursor-pointer"
                 onClick={() => filterByRegion("europe")}
               >
-                <a href="#">Europe</a>
+                Europe
               </li>
               <li
-                className="hover:bg-very-dark-blue p-2"
+                className="hover:bg-very-dark-blue p-2 cursor-pointer"
                 onClick={() => filterByRegion("oceania")}
               >
-                <a href="#">Oceania</a>
+                Oceania
               </li>
             </ul>
           </div>

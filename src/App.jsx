@@ -31,7 +31,12 @@ function App() {
       <div className="bg-very-dark-blue min-h-screen">
         <Router>
           <Routes>
-            <Route path="/" element={<Home countries={countries} />} />
+            <Route
+              path="/"
+              element={
+                <Home countries={countries} setCountries={setCountries} />
+              }
+            />
             <Route
               path="/countries/:name"
               element={<CountryDetails countries={countries} />}

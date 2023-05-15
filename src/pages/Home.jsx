@@ -5,63 +5,46 @@ import Navbar from "../components/Navbar";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-function Home({ countries }) {
-  const [userInput, setUserInput] = useState("");
-  const [filteredResults, setFilteredResults] = useState([]);
-  const [isFilter, setIsFilter] = useState(false);
+function Home({ countries, setCountries }) {
   const [dropdown, setDropDown] = useState(false);
+  const [searchedCountries, setSearchedCountries] = useState(countries);
 
   //searching filter
-  const searchedCountries = countries.filter((country) => {
-    return country.name.common.toLowerCase().includes(userInput.toLowerCase());
-  });
+  function search(query) {
+    const updatedCountries = countries.filter((country) => {
+      return country.name.common.toLowerCase().includes(query.toLowerCase());
+    });
+    setSearchedCountries(updatedCountries);
+  }
+
   //filter by region
   function filterByRegion(region) {
-    setDropDown(!dropdown);
-    const updatedCountries = countries.filter(
-      (country) => country.region.toLowerCase() === region
-    );
-    setFilteredResults(updatedCountries);
-    setIsFilter(true);
+    const updatedCountries = countries.filter((country) => {
+      return country.region.toLowerCase() === region;
+    });
+    setDropDown(false);
+    setSearchedCountries(updatedCountries);
   }
   return (
     <>
       <Navbar />
-      <Searchbox setUserInput={setUserInput} />
+      <Searchbox search={search} />
       <Dropdown
         filterByRegion={filterByRegion}
         setDropDown={setDropDown}
         dropdown={dropdown}
       />
-      {searchedCountries
-        ? searchedCountries.map((country) => {
-            return (
-              <div key={country.name.common}>
-                <Link to={`/countries/${country.name.common}`}>
-                  <Card country={country} />
-                </Link>
-              </div>
-            );
-          })
-        : isFilter === true
-        ? filteredResults.map((country) => {
-            return (
-              <div key={country.name.common}>
-                <Link to={`/countries/${country.name.common}`}>
-                  <Card country={country} />
-                </Link>
-              </div>
-            );
-          })
-        : countries.map((country) => {
-            return (
-              <div key={country.name.common}>
-                <Link to={`/countries/${country.name.common}`}>
-                  <Card country={country} />
-                </Link>
-              </div>
-            );
-          })}
+      <div className="md:grid md:grid-cols-4 md:gap-4">
+        {searchedCountries.map((country) => {
+          return (
+            <div key={country.name.common}>
+              <Link to={`/countries/${country.name.common}`}>
+                <Card country={country} />
+              </Link>
+            </div>
+          );
+        })}
+      </div>
     </>
   );
 }

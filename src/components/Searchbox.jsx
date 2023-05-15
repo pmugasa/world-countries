@@ -1,4 +1,4 @@
-function Searchbox({ setUserInput }) {
+function Searchbox({ search }) {
   return (
     <>
       <div className="  mt-6 mx-4 h-12 bg-dark-blue shadow-md text-white  rounded-lg ">
@@ -13,7 +13,7 @@ function Searchbox({ setUserInput }) {
           <input
             type="search"
             autoComplete="off"
-            onChange={(e) => setUserInput(e.target.value)}
+            onChange={(e) => search(e.target.value)}
             placeholder="Search for a country..."
             className="pl-12 bg-transparent  border-transparent focus:outline-none focus:border-very-dark-blue focus:ring-1 focus:ring-very-dark-blue w-full h-full placeholder:text-white placeholder:text-small  "
           />
